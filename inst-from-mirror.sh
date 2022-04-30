@@ -21,7 +21,8 @@ do
    libs+=($exe);
 done
 
-for index in {0..3}; do
+for (( index=0; index<${#zips[@]}; index++ ));
+do
 echo "Шаг $index"
 lib="${libs[$index]}"
 zfile="${zips[$index]}"
