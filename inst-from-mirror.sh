@@ -1,39 +1,31 @@
 # Runtime Pack Lite
 cd ~
-export DFILE=runtimepack.exe
-if [ ! -f "~/$DFILE" ]; then
-    echo "$DFILE not exists. Wait while downloading"
-    wget http://mirror.artnazarov.ru/runtimepack.zip
-    unzip runtimepack.zip
-    rm runtimepack.zip -f
+
+declare -a libs=("RuntimePack_Lite-20.3.3.exe" "VCRHyb64.exe" "NET.Framework-4.8.exe")
+declare -a zips=("runtimepack.zip" "VCRHyb64.zip" "net48.zip")
+
+for index in {0..2}; do
+echo "Шаг $index"
+lib="${libs[$index]}"
+zfile="${zips[$index]}"
+
+echo "имя библиотеки - $lib"
+echo "имя архива - $zfile"
+
+if [ ! -f "$lib" ]
+then
+   echo "$lib not exists. Wait while downloading"
+    echo "http://mirror.artnazarov.ru/$zfile"
+    wget "http://mirror.artnazarov.ru/$zfile"
+    unzip $zfile
+    rm $zfile -f
 else
-echo "Installing"
+   echo "Installing"
 fi
 
-wine RuntimePack_Lite-20.3.3.exe
-rm RuntimePack_Lite-20.3.3.exe -f
+wine $lib 
+rm $lib -f
+  
+done
 
-export DFILE=VCRHyb64.exe
-if [ ! -f "~/$DFILE" ]; then
-    echo "$DFILE exists. Wait while downloading"
-    wget http://mirror.artnazarov.ru/VCRHyb64.zip
-    unzip VCRHyb64.exe
-    rm VCRHyb64.zip -f
-else
-echo "Installing"          
-fi
-wine VCRHyb64.exe
-rm VCRHyb64.exe -f
 
-# NET 4.8  
-export DFILE=VCRHyb64.exe
-if [ ! -f "~/$DFILE" ]; then
-    echo "$DFILE exists. Wait while downloading"
-    wget http://mirror.artnazarov.ru/net48.zip
-    unzip net48.zip 
-    rm net48.zip -f
-else
-echo "Installing..."
-fi
-wine NET.Framework-4.8.exe
-rm NET.Framework-4.8.exe -f
