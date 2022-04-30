@@ -8,11 +8,10 @@ if [ ! -f "~/$DFILE" ]; then
     rm runtimepack.zip -f
 else
 echo "Installing"
-wine RuntimePack_Lite-20.3.3.exe
-rm RuntimePack_Lite-20.3.3.exe -f
 fi
 
-
+wine RuntimePack_Lite-20.3.3.exe
+rm RuntimePack_Lite-20.3.3.exe -f
 
 export DFILE=VCRHyb64.exe
 if [ ! -f "~/$DFILE" ]; then
@@ -21,10 +20,10 @@ if [ ! -f "~/$DFILE" ]; then
     unzip VCRHyb64.exe
     rm VCRHyb64.zip -f
 else
-echo "Installing"
-wine VCRHyb64.exe
-rm VCRHyb64.exe -f          
+echo "Installing"          
 fi
+wine VCRHyb64.exe
+rm VCRHyb64.exe -f
 
 # NET 4.8  
 export DFILE=VCRHyb64.exe
@@ -35,6 +34,7 @@ if [ ! -f "~/$DFILE" ]; then
     rm net48.zip -f
 else
 echo "Installing..."
+fi
+
 wine NET.Framework-4.8.exe
 rm NET.Framework-4.8.exe -f
-fi
