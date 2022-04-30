@@ -23,6 +23,8 @@ echo "3 Install dot net"
 env WINEDEBUG=-all arch=64 WINEPREFIX=~/.wine64 winetricks dotnet20
 env WINEDEBUG=-all arch=64 WINEPREFIX=~/.wine64 winetricks dotnet30
 env WINEDEBUG=-all arch=64 WINEPREFIX=~/.wine64 winetricks dotnet35
+wineserver -k
+wineboot
 env WINEDEBUG=-all arch=64 WINEPREFIX=~/.wine64 winetricks dotnet40
 
 echo "4 Install VC Run"
