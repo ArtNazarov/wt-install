@@ -1,6 +1,8 @@
 echo "wt-install.sh - (с) nazarow.ru, 2022"
 echo "e-mail: artem@nazarow.ru"
 
+env WINEDEBUG=-all WINEARCH=win32 WINEPREFIX=~/.wine winecfg
+
 echo "1 Install codecs"
 
 env WINEDEBUG=-all WINEARCH=win32 WINEPREFIX=~/.wine winetricks ffdshow
