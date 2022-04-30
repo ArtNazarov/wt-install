@@ -1,7 +1,7 @@
 echo "wt-install-64.sh - (с) nazarow.ru, 2022"
 echo "e-mail: artem@nazarow.ru"
 
-nv WINEDEBUG=-all arch=64 WINEPREFIX=~/.wine64 winecfg
+env WINEDEBUG=-all arch=64 WINEPREFIX=~/.wine64 winecfg
 
 
 echo "1 Install codecs"
