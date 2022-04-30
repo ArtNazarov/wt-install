@@ -1,8 +1,25 @@
 # Runtime Pack Lite
 cd ~
 
-declare -a libs=("RuntimePack_Lite-20.3.3.exe" "VCRHyb64.exe" "NET.Framework-4.8.exe" "K-Lite_Mega_Codec_Pack-15.8.5.exe")
-declare -a zips=("runtimepack.zip" "VCRHyb64.zip" "net48.zip" "codecs.zip")
+declare -a libs=()
+declare -a zips=()
+# load list
+# load from server zfile : exe
+wget -O list-libs.txt http://mirror.artnazarov.ru/list-zips.php
+cat list-libs.txt
+readarray -t db < list-libs.txt
+index=0
+for str in "${db[@]}"
+do
+   echo "Очередная строка $str"
+   data=(${str//;/ })
+   zf=${data[0]}
+   exe=${data[1]} 
+   echo "Архив - $zf"
+   echo "Установщик - $exe"     
+   zips+=($zf);
+   libs+=($exe);
+done
 
 for index in {0..3}; do
 echo "Шаг $index"
