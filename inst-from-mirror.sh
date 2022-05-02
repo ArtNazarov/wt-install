@@ -5,7 +5,11 @@ declare -a libs=()
 declare -a zips=()
 # load list
 # load from server zfile : exe
-wget -O list-libs.txt http://mirror.artnazarov.ru/list-zips.php
+ read -r -p "If you already get list-libs.txt, press N, or Y to update $lib [Y/n]" response
+ response=${response,,} # tolower
+ if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
+		wget -O list-libs.txt http://mirror.artnazarov.ru/list-zips.php
+	fi
 cat list-libs.txt
 readarray -t db < list-libs.txt
 index=0
@@ -30,6 +34,10 @@ zfile="${zips[$index]}"
 echo "имя библиотеки - $lib"
 echo "имя архива - $zfile"
 
+ read -r -p "Install $lib [Y/n]" response
+ response=${response,,} # tolower
+ if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
+
 if [ ! -f "$lib" ]
 then
    echo "$lib not exists. Wait while downloading"
@@ -43,5 +51,7 @@ fi
 
 wine $lib 
 rm $lib -f
+
+	fi
   
 done
